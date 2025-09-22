@@ -40,12 +40,17 @@
   <li><a href="URL_TO_YOUR_FILE/Function_Note1.Rmd">Enrichment</a></li>
 </ul>
 
-<h2 id="awards-and-honors">Awards and Honors</h2>
+<h2 id="leadership-extracurriculars">Leadership & Extracurriculars</h2>
 <ul>
-  <li>这里放你的奖项信息，如：某某奖项, 颁发机构, 年份</li>
+  <li>Served as a Staff Member for the University Practical Guidance Center (2024-2025), with responsibilities including drafting documents, coordinating events, and managing financial reimbursements.</li>
 </ul>
 
+<h2 id="awards-and-honors">Awards and Honors</h2>
+<ul>
+  <li>Awarded First Prize for the "2025 Winter Break Social Practice" by Zhejiang University.</li>
+</ul>
 <h2 id="skills">Skills</h2>
+
 <h3>Languages</h3>
 <ul>
   <li>
