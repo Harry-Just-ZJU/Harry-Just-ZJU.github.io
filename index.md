@@ -46,10 +46,18 @@
 </ul>
 
 <h2 id="skills">Skills</h2>
-<h3>Language</h3>
+<h3>Languages</h3>
 <ul>
-  <li>Mandarin (Native)</li>
-  <li>English (Fluent)</li>
+  <li>
+    Mandarin: Native Proficiency
+  </li>
+  <li>
+    English: Fluent
+    <ul>
+      <li>College English Test (CET) 4: 637</li>
+      <li>College English Test (CET) 6: 541</li>
+    </ul>
+  </li>
 </ul>
 <h3>Technology</h3>
 <ul>
