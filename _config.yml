@@ -20,7 +20,7 @@ rtl                      : # true, false (default) # turns direction of the page
 title                    : "Harry-Just"
 title_separator          : "-"
 subtitle                 : # site tagline that appears below site title in masthead
-name                     : "Harry-Just"
+name                     : "Hanyang Mao"
 description              : "Just."
 url                      : # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
 baseurl                  : # the subpath of your site, e.g. "/blog"
@@ -159,6 +159,9 @@ footer:
     - label: "Instagram"
       icon: "fab fa-fw fa-instagram"
       # url:
+    - label: "Linkedin"
+      icon: "fab fa-fw fa-instagram"
+      url: "https://www.linkedin.com/in/%E6%B6%B5%E9%98%B3-%E6%AF%9B-a2955137a/"
   since: "2013"
 
 
