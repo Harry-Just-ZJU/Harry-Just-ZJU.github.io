@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hanyang Mao | 毛涵阳 - Personal Homepage</title>
+    <meta name="description" content="Hanyang Mao - Undergraduate in Bioinformatics at Zhejiang University & University of Edinburgh">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --primary-dark: #1d4ed8;
+            --text-color: #1f2937;
+            --text-light: #6b7280;
+            --bg-color: #ffffff;
+            --bg-secondary: #f9fafb;
+            --border-color: #e5e7eb;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', 'Noto Sans SC', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.7;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Header Section */
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 80px 0 60px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+
+        .header-content {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .profile-photo {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            border: 4px solid rgba(255, 255, 255, 0.9);
+            object-fit: cover;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+            flex-shrink: 0;
+        }
+
+        .header-text h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .header-text .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.95;
+            margin-bottom: 16px;
+        }
+
+        .header-text .tagline {
+            font-size: 1rem;
+            opacity: 0.85;
+            max-width: 500px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 16px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            color: white;
+            font-size: 1.5rem;
+            opacity: 0.9;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            opacity: 1;
+            transform: translateY(-2px);
+        }
+
+        /* Navigation */
+        .nav {
+            background: var(--bg-color);
+            border-bottom: 1px solid var(--border-color);
+            padding: 16px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: var(--shadow);
+        }
+
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            gap: 32px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 8px 0;
+            border-bottom: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+            border-bottom-color: var(--primary-color);
+        }
+
+        /* Main Content */
+        main {
+            padding: 60px 0;
+        }
+
+        section {
+            margin-bottom: 60px;
+        }
+
+        .section-title {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--text-color);
+            margin-bottom: 24px;
+            padding-bottom: 12px;
+            border-bottom: 3px solid var(--primary-color);
+            display: inline-block;
+        }
+
+        .section-title i {
+            margin-right: 10px;
+            color: var(--primary-color);
+        }
+
+        /* About Section */
+        .about-content {
+            background: var(--bg-secondary);
+            padding: 30px;
+            border-radius: 12px;
+            border-left: 4px solid var(--primary-color);
+        }
+
+        .about-content p {
+            font-size: 1.1rem;
+            color: var(--text-color);
+            margin-bottom: 16px;
+        }
+
+        .about-content p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Research Interests */
+        .research-list {
+            display: grid;
+            gap: 16px;
+        }
+
+        .research-item {
+            background: var(--bg-secondary);
+            padding: 20px;
+            border-radius: 10px;
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+        }
+
+        .research-item:hover {
+            box-shadow: var(--shadow);
+            transform: translateY(-2px);
+        }
+
+        .research-item p {
+            color: var(--text-color);
+            margin: 0;
+        }
+
+        /* Education */
+        .education-card {
+            background: var(--bg-secondary);
+            padding: 24px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .education-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--primary-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        .education-details h3 {
+            font-size: 1.2rem;
+            color: var(--text-color);
+            margin-bottom: 4px;
+        }
+
+        .education-details p {
+            color: var(--text-light);
+        }
+
+        /* Experience */
+        .experience-grid {
+            display: grid;
+            gap: 24px;
+        }
+
+        .experience-category {
+            background: var(--bg-secondary);
+            padding: 24px;
+            border-radius: 12px;
+        }
+
+        .experience-category h3 {
+            font-size: 1.25rem;
+            color: var(--primary-color);
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .project-list {
+            list-style: none;
+        }
+
+        .project-list li {
+            padding: 12px 0;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .project-list li:last-child {
+            border-bottom: none;
+        }
+
+        .project-list a {
+            color: var(--text-color);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .project-list a:hover {
+            color: var(--primary-color);
+        }
+
+        /* Awards */
+        .awards-list {
+            list-style: none;
+        }
+
+        .award-item {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 16px;
+            background: var(--bg-secondary);
+            border-radius: 10px;
+            margin-bottom: 12px;
+        }
+
+        .award-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.25rem;
+            flex-shrink: 0;
+        }
+
+        /* Skills */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 24px;
+        }
+
+        .skill-category {
+            background: var(--bg-secondary);
+            padding: 24px;
+            border-radius: 12px;
+        }
+
+        .skill-category h3 {
+            font-size: 1.1rem;
+            color: var(--primary-color);
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .skill-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .skill-item:last-child {
+            border-bottom: none;
+        }
+
+        .skill-item strong {
+            color: var(--text-color);
+        }
+
+        .skill-item span {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--text-color);
+            color: white;
+            padding: 40px 0;
+            text-align: center;
+        }
+
+        footer p {
+            opacity: 0.8;
+            margin-bottom: 16px;
+        }
+
+        footer .social-links a {
+            color: white;
+            margin: 0 12px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header {
+                padding: 60px 0 40px;
+            }
+
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .profile-photo {
+                width: 150px;
+                height: 150px;
+            }
+
+            .header-text h1 {
+                font-size: 2rem;
+            }
+
+            .social-links {
+                justify-content: center;
+            }
+
+            .nav-links {
+                flex-wrap: wrap;
+                gap: 16px;
+            }
+
+            .section-title {
+                font-size: 1.5rem;
+            }
+
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <img src="My_Photo.jpg" alt="Hanyang Mao" class="profile-photo">
+                <div class="header-text">
+                    <h1>Hanyang Mao 毛涵阳</h1>
+                    <p class="subtitle">Bioinformatics Undergraduate</p>
+                    <p class="tagline">Zhejiang University & University of Edinburgh Joint Program</p>
+                    <div class="social-links">
+                        <a href="mailto:your.email@example.com" title="Email"><i class="fas fa-envelope"></i></a>
+                        <a href="https://github.com/Harry-Just-ZJU" title="GitHub"><i class="fab fa-github"></i></a>
+                        <a href="https://www.linkedin.com/in/%E6%B6%B5%E9%98%B3-%E6%AF%9B-a2955137a/" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="container">
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#research">Research</a></li>
+                <li><a href="#education">Education</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#awards">Awards</a></li>
+                <li><a href="#skills">Skills</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main>
+        <div class="container">
+            <!-- About Section -->
+            <section id="about">
+                <h2 class="section-title"><i class="fas fa-user"></i>About Me</h2>
+                <div class="about-content">
+                    <p>My name is Hanyang Mao, an undergraduate student in the joint program between Zhejiang University and the University of Edinburgh. I major in bioinformatics and have a deep passion for genomics research.</p>
+                    <p>I have a great enthusiasm for life. I'm a highly social person who enjoys team sports and loves playing video games such as Counter-Strike.</p>
+                </div>
+            </section>
+
+            <!-- Research Interests -->
+            <section id="research">
+                <h2 class="section-title"><i class="fas fa-flask"></i>Research Interests</h2>
+                <div class="research-list">
+                    <div class="research-item">
+                        <p><strong>Lymphangioleiomyomatosis (LAM):</strong> Investigating genes or molecular mechanisms capable of compensating for or regulating the loss of TSC1/TSC2 that leads to mTORC1 suppression.</p>
+                    </div>
+                    <div class="research-item">
+                        <p><strong>mTORC1 Regulation:</strong> Exploring additional genes beyond TSC that can selectively downregulate mTORC1 activity, functioning analogously to bi-steric mTORC1 inhibitors.</p>
+                    </div>
+                    <div class="research-item">
+                        <p><strong>Immune Checkpoint Research:</strong> Studying immune checkpoint molecules overexpressed in LAM and related tumors, investigating genes capable of repressing immune checkpoint expression.</p>
+                    </div>
+                    <div class="research-item">
+                        <p><strong>Gene Signature Identification:</strong> Identifying stable, small-scale gene signatures across platforms (microarray and RNA-seq) for LAM classification or subtype stratification.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Education -->
+            <section id="education">
+                <h2 class="section-title"><i class="fas fa-graduation-cap"></i>Education</h2>
+                <div class="education-card">
+                    <div class="education-icon">
+                        <i class="fas fa-university"></i>
+                    </div>
+                    <div class="education-details">
+                        <h3>Zhejiang University & University of Edinburgh</h3>
+                        <p>Bachelor's in Bioinformatics (Joint Program)</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Research Experience -->
+            <section id="experience">
+                <h2 class="section-title"><i class="fas fa-microscope"></i>Research Experience</h2>
+                <div class="experience-grid">
+                    <div class="experience-category">
+                        <h3><i class="fas fa-dna"></i>Lymphangioleiomyomatosis Research</h3>
+                        <ul class="project-list">
+                            <li>
+                                <i class="fas fa-file-alt"></i>
+                                <a href="#">Subtype Classification of Macrophages in Lymphangioleiomyomatosis</a>
+                            </li>
+                            <li>
+                                <i class="fas fa-file-alt"></i>
+                                <a href="#">Cell Chat between Lymphangioleiomyomatosis Cells</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="experience-category">
+                        <h3><i class="fas fa-laptop-code"></i>Personal Practices</h3>
+                        <ul class="project-list">
+                            <li>
+                                <i class="fas fa-code"></i>
+                                <strong>COVID-19 Dataset Modeling:</strong> Random Forest Implementation
+                            </li>
+                            <li>
+                                <i class="fas fa-code"></i>
+                                <strong>Breast Cancer Analysis:</strong> Data Processing & DEA
+                            </li>
+                            <li>
+                                <i class="fas fa-code"></i>
+                                <strong>Enrichment Analysis:</strong> Functional Annotation
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Leadership & Extracurriculars -->
+            <section id="leadership">
+                <h2 class="section-title"><i class="fas fa-users"></i>Leadership & Extracurriculars</h2>
+                <div class="about-content">
+                    <p>Served as a Staff Member for the University Practical Guidance Center (2024-2025), with responsibilities including drafting documents, coordinating events, and managing financial reimbursements.</p>
+                </div>
+            </section>
+
+            <!-- Awards -->
+            <section id="awards">
+                <h2 class="section-title"><i class="fas fa-trophy"></i>Awards & Honors</h2>
+                <ul class="awards-list">
+                    <li class="award-item">
+                        <div class="award-icon">
+                            <i class="fas fa-medal"></i>
+                        </div>
+                        <div>
+                            <strong>First Prize - 2025 Winter Break Social Practice</strong>
+                            <p style="color: var(--text-light); margin-top: 4px;">Zhejiang University</p>
+                        </div>
+                    </li>
+                </ul>
+            </section>
+
+            <!-- Skills -->
+            <section id="skills">
+                <h2 class="section-title"><i class="fas fa-cogs"></i>Skills</h2>
+                <div class="skills-grid">
+                    <div class="skill-category">
+                        <h3><i class="fas fa-language"></i>Languages</h3>
+                        <div class="skill-item">
+                            <strong>Mandarin:</strong>
+                            <span>Native Proficiency</span>
+                        </div>
+                        <div class="skill-item">
+                            <strong>English:</strong>
+                            <span>Fluent (CET-4: 637, CET-6: 541)</span>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h3><i class="fas fa-laptop-code"></i>Technology</h3>
+                        <div class="skill-item">
+                            <strong>R:</strong>
+                            <span>Data analysis, ggplot2, Seurat</span>
+                        </div>
+                        <div class="skill-item">
+                            <strong>Python:</strong>
+                            <span>Automation, scripting</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>© 2025 Hanyang Mao. All rights reserved.</p>
+            <div class="social-links">
+                <a href="mailto:your.email@example.com"><i class="fas fa-envelope"></i></a>
+                <a href="https://github.com/Harry-Just-ZJU"><i class="fab fa-github"></i></a>
+                <a href="https://www.linkedin.com/in/%E6%B6%B5%E9%98%B3-%E6%AF%9B-a2955137a/"><i class="fab fa-linkedin"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Smooth Scrolling Script -->
+    <script>
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
