@@ -3,21 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hanyang Mao | 毛涵阳 - Personal Homepage</title>
-    <meta name="description" content="Hanyang Mao - Undergraduate in Bioinformatics at Zhejiang University & University of Edinburgh">
+    <title>Mao Hanyang 毛涵阳 | Just.</title>
+    <meta name="description" content="Mao Hanyang - Biomedical Informatics at Zhejiang University International School">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Noto+Serif+SC:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary-color: #2563eb;
-            --primary-dark: #1d4ed8;
-            --text-color: #1f2937;
-            --text-light: #6b7280;
-            --bg-color: #ffffff;
-            --bg-secondary: #f9fafb;
-            --border-color: #e5e7eb;
-            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            --sakura-pink: #FFB7C5;
+            --sakura-light: #FFF0F3;
+            --sakura-dark: #E91E63;
+            --sakura-petal: #FFCDD2;
+            --text-dark: #2D3436;
+            --text-light: #636E72;
+            --bg-cream: #FFFAF5;
+            --card-bg: rgba(255, 255, 255, 0.85);
+            --shadow: 0 10px 40px rgba(233, 30, 99, 0.1);
         }
 
         * {
@@ -26,583 +26,737 @@
             box-sizing: border-box;
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
-            font-family: 'Inter', 'Noto Sans SC', -apple-system, BlinkMacSystemFont, sans-serif;
-            line-height: 1.7;
-            color: var(--text-color);
-            background-color: var(--bg-color);
+            font-family: 'Inter', 'Noto Serif SC', serif;
+            background: linear-gradient(135deg, #FFF5F7 0%, #FFEEF2 50%, #FFF0F5 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+            color: var(--text-dark);
+            line-height: 1.8;
         }
 
-        .container {
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 0 24px;
-        }
-
-        /* Header Section */
-        .header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 80px 0 60px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .header::before {
-            content: '';
-            position: absolute;
+        /* Sakura Canvas Background */
+        #sakura-canvas {
+            position: fixed;
             top: 0;
             left: 0;
-            right: 0;
-            bottom: 0;
-            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-        }
-
-        .header-content {
-            display: flex;
-            align-items: center;
-            gap: 40px;
-            position: relative;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
             z-index: 1;
         }
 
-        .profile-photo {
-            width: 180px;
-            height: 180px;
-            border-radius: 50%;
-            border: 4px solid rgba(255, 255, 255, 0.9);
-            object-fit: cover;
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+        /* Main Content Container */
+        .main-content {
+            position: relative;
+            z-index: 10;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 20px;
+            position: relative;
+        }
+
+        .hero-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(20px);
+            border-radius: 30px;
+            padding: 60px;
+            max-width: 900px;
+            width: 100%;
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(255, 183, 197, 0.3);
+            display: flex;
+            align-items: center;
+            gap: 50px;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .profile-section {
+            text-align: center;
             flex-shrink: 0;
         }
 
-        .header-text h1 {
-            font-size: 2.5rem;
+        .profile-photo {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid var(--sakura-pink);
+            box-shadow: 0 15px 35px rgba(233, 30, 99, 0.2);
+            transition: transform 0.4s ease;
+        }
+
+        .profile-photo:hover {
+            transform: scale(1.05) rotate(3deg);
+        }
+
+        .hero-info h1 {
+            font-family: 'Playfair Display', 'Noto Serif SC', serif;
+            font-size: 3rem;
             font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 8px;
+            background: linear-gradient(135deg, var(--sakura-dark), #FF6B9D);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-info .motto {
+            font-size: 1.5rem;
+            color: var(--sakura-dark);
+            font-style: italic;
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+
+        .hero-info .subtitle {
+            font-size: 1.1rem;
+            color: var(--text-light);
             margin-bottom: 8px;
         }
 
-        .header-text .subtitle {
-            font-size: 1.2rem;
-            opacity: 0.95;
-            margin-bottom: 16px;
-        }
-
-        .header-text .tagline {
+        .hero-info .school {
             font-size: 1rem;
-            opacity: 0.85;
-            max-width: 500px;
+            color: var(--text-light);
+            margin-bottom: 25px;
         }
 
         .social-links {
             display: flex;
-            gap: 16px;
-            margin-top: 20px;
+            gap: 15px;
+            margin-top: 25px;
         }
 
         .social-links a {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--sakura-pink), var(--sakura-petal));
+            display: flex;
+            align-items: center;
+            justify-content: center;
             color: white;
-            font-size: 1.5rem;
-            opacity: 0.9;
+            font-size: 1.3rem;
+            text-decoration: none;
             transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(233, 30, 99, 0.2);
         }
 
         .social-links a:hover {
-            opacity: 1;
-            transform: translateY(-2px);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(233, 30, 99, 0.3);
+            background: linear-gradient(135deg, var(--sakura-dark), #FF6B9D);
         }
 
         /* Navigation */
-        .nav {
-            background: var(--bg-color);
-            border-bottom: 1px solid var(--border-color);
-            padding: 16px 0;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            box-shadow: var(--shadow);
-        }
-
-        .nav-links {
+        .nav-floating {
+            position: fixed;
+            top: 30px;
+            right: 30px;
+            z-index: 1000;
             display: flex;
-            justify-content: center;
-            gap: 32px;
-            list-style: none;
+            gap: 10px;
         }
 
-        .nav-links a {
-            color: var(--text-color);
+        .nav-floating a {
+            padding: 12px 20px;
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            border-radius: 25px;
+            color: var(--text-dark);
             text-decoration: none;
+            font-size: 0.9rem;
             font-weight: 500;
-            padding: 8px 0;
-            border-bottom: 2px solid transparent;
             transition: all 0.3s ease;
+            border: 1px solid rgba(255, 183, 197, 0.3);
         }
 
-        .nav-links a:hover {
-            color: var(--primary-color);
-            border-bottom-color: var(--primary-color);
+        .nav-floating a:hover {
+            background: var(--sakura-pink);
+            color: white;
+            transform: translateY(-3px);
         }
 
-        /* Main Content */
-        main {
-            padding: 60px 0;
-        }
-
-        section {
-            margin-bottom: 60px;
+        /* Sections */
+        .section {
+            padding: 80px 20px;
+            max-width: 1000px;
+            margin: 0 auto;
         }
 
         .section-title {
-            font-size: 1.75rem;
-            font-weight: 700;
-            color: var(--text-color);
-            margin-bottom: 24px;
-            padding-bottom: 12px;
-            border-bottom: 3px solid var(--primary-color);
-            display: inline-block;
+            font-family: 'Playfair Display', 'Noto Serif SC', serif;
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 50px;
+            color: var(--text-dark);
+            position: relative;
         }
 
-        .section-title i {
-            margin-right: 10px;
-            color: var(--primary-color);
+        .section-title::after {
+            content: '🌸';
+            display: block;
+            margin-top: 15px;
+            font-size: 2rem;
         }
 
-        /* About Section */
-        .about-content {
-            background: var(--bg-secondary);
-            padding: 30px;
-            border-radius: 12px;
-            border-left: 4px solid var(--primary-color);
-        }
-
-        .about-content p {
-            font-size: 1.1rem;
-            color: var(--text-color);
-            margin-bottom: 16px;
-        }
-
-        .about-content p:last-child {
-            margin-bottom: 0;
-        }
-
-        /* Research Interests */
-        .research-list {
-            display: grid;
-            gap: 16px;
-        }
-
-        .research-item {
-            background: var(--bg-secondary);
-            padding: 20px;
-            border-radius: 10px;
-            border: 1px solid var(--border-color);
+        /* Cards */
+        .card {
+            background: var(--card-bg);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            padding: 35px;
+            margin-bottom: 25px;
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(255, 183, 197, 0.2);
             transition: all 0.3s ease;
         }
 
-        .research-item:hover {
-            box-shadow: var(--shadow);
-            transform: translateY(-2px);
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 50px rgba(233, 30, 99, 0.15);
         }
 
-        .research-item p {
-            color: var(--text-color);
-            margin: 0;
-        }
-
-        /* Education */
-        .education-card {
-            background: var(--bg-secondary);
-            padding: 24px;
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            gap: 20px;
-        }
-
-        .education-icon {
-            width: 60px;
-            height: 60px;
-            background: var(--primary-color);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 1.5rem;
-            flex-shrink: 0;
-        }
-
-        .education-details h3 {
-            font-size: 1.2rem;
-            color: var(--text-color);
-            margin-bottom: 4px;
-        }
-
-        .education-details p {
-            color: var(--text-light);
-        }
-
-        /* Experience */
-        .experience-grid {
-            display: grid;
-            gap: 24px;
-        }
-
-        .experience-category {
-            background: var(--bg-secondary);
-            padding: 24px;
-            border-radius: 12px;
-        }
-
-        .experience-category h3 {
-            font-size: 1.25rem;
-            color: var(--primary-color);
-            margin-bottom: 16px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .project-list {
-            list-style: none;
-        }
-
-        .project-list li {
-            padding: 12px 0;
-            border-bottom: 1px solid var(--border-color);
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .project-list li:last-child {
-            border-bottom: none;
-        }
-
-        .project-list a {
-            color: var(--text-color);
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-
-        .project-list a:hover {
-            color: var(--primary-color);
-        }
-
-        /* Awards */
-        .awards-list {
-            list-style: none;
-        }
-
-        .award-item {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-            padding: 16px;
-            background: var(--bg-secondary);
-            border-radius: 10px;
-            margin-bottom: 12px;
-        }
-
-        .award-icon {
-            width: 50px;
-            height: 50px;
-            background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 1.25rem;
-            flex-shrink: 0;
-        }
-
-        /* Skills */
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 24px;
-        }
-
-        .skill-category {
-            background: var(--bg-secondary);
-            padding: 24px;
-            border-radius: 12px;
-        }
-
-        .skill-category h3 {
-            font-size: 1.1rem;
-            color: var(--primary-color);
-            margin-bottom: 16px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .skill-item {
+        .card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            color: var(--sakura-dark);
+            margin-bottom: 15px;
             display: flex;
             align-items: center;
             gap: 12px;
-            padding: 10px 0;
-            border-bottom: 1px solid var(--border-color);
         }
 
-        .skill-item:last-child {
-            border-bottom: none;
+        .card h3 i {
+            font-size: 1.2rem;
         }
 
-        .skill-item strong {
-            color: var(--text-color);
-        }
-
-        .skill-item span {
+        .card p, .card li {
             color: var(--text-light);
-            font-size: 0.9rem;
+            font-size: 1rem;
+            line-height: 1.8;
+        }
+
+        .card ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .card li {
+            padding: 8px 0;
+            padding-left: 25px;
+            position: relative;
+        }
+
+        .card li::before {
+            content: '✿';
+            position: absolute;
+            left: 0;
+            color: var(--sakura-pink);
+        }
+
+        /* Research Interests Grid */
+        .research-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .research-card {
+            background: linear-gradient(135deg, var(--card-bg), rgba(255, 240, 243, 0.9));
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 183, 197, 0.3);
+        }
+
+        .research-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(233, 30, 99, 0.15);
+        }
+
+        .research-card .icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, var(--sakura-pink), var(--sakura-dark));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 1.8rem;
+            color: white;
+        }
+
+        .research-card h4 {
+            font-size: 1.1rem;
+            color: var(--text-dark);
+            margin-bottom: 10px;
+        }
+
+        .research-card p {
+            font-size: 0.95rem;
+            color: var(--text-light);
+        }
+
+        /* Skills Section */
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .skill-tag {
+            background: linear-gradient(135deg, var(--sakura-light), white);
+            padding: 15px 25px;
+            border-radius: 50px;
+            text-align: center;
+            font-weight: 500;
+            color: var(--sakura-dark);
+            border: 2px solid var(--sakura-pink);
+            transition: all 0.3s ease;
+        }
+
+        .skill-tag:hover {
+            background: var(--sakura-pink);
+            color: white;
+            transform: scale(1.05);
+        }
+
+        /* Timeline */
+        .timeline-item {
+            display: flex;
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+
+        .timeline-date {
+            flex-shrink: 0;
+            width: 120px;
+            text-align: right;
+            color: var(--sakura-dark);
+            font-weight: 600;
+        }
+
+        .timeline-content {
+            flex: 1;
+            padding-left: 25px;
+            border-left: 3px solid var(--sakura-pink);
+            position: relative;
+        }
+
+        .timeline-content::before {
+            content: '🌸';
+            position: absolute;
+            left: -12px;
+            top: 0;
+            font-size: 1.2rem;
         }
 
         /* Footer */
         footer {
-            background: var(--text-color);
-            color: white;
-            padding: 40px 0;
             text-align: center;
+            padding: 50px 20px;
+            background: linear-gradient(135deg, rgba(255, 183, 197, 0.2), rgba(255, 205, 210, 0.2));
+            margin-top: 50px;
         }
 
         footer p {
-            opacity: 0.8;
-            margin-bottom: 16px;
+            color: var(--text-light);
+            margin-bottom: 20px;
         }
 
-        footer .social-links a {
+        footer .social-links {
+            justify-content: center;
+        }
+
+        /* Scroll to top button */
+        .scroll-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--sakura-pink), var(--sakura-dark));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             color: white;
-            margin: 0 12px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 1000;
+            border: none;
+            box-shadow: 0 5px 20px rgba(233, 30, 99, 0.3);
+        }
+
+        .scroll-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .scroll-top:hover {
+            transform: translateY(-5px);
         }
 
         /* Responsive Design */
         @media (max-width: 768px) {
-            .header {
-                padding: 60px 0 40px;
-            }
-
-            .header-content {
+            .hero-card {
                 flex-direction: column;
+                padding: 40px 25px;
                 text-align: center;
             }
 
-            .profile-photo {
-                width: 150px;
-                height: 150px;
-            }
-
-            .header-text h1 {
-                font-size: 2rem;
+            .hero-info h1 {
+                font-size: 2.2rem;
             }
 
             .social-links {
                 justify-content: center;
             }
 
-            .nav-links {
+            .nav-floating {
+                top: 15px;
+                right: 15px;
                 flex-wrap: wrap;
-                gap: 16px;
+                justify-content: flex-end;
+                max-width: 200px;
+            }
+
+            .nav-floating a {
+                padding: 8px 15px;
+                font-size: 0.8rem;
             }
 
             .section-title {
-                font-size: 1.5rem;
+                font-size: 2rem;
             }
 
-            .skills-grid {
-                grid-template-columns: 1fr;
+            .timeline-item {
+                flex-direction: column;
+                gap: 10px;
             }
+
+            .timeline-date {
+                text-align: left;
+                width: auto;
+            }
+
+            .profile-photo {
+                width: 160px;
+                height: 160px;
+            }
+        }
+
+        /* Decorative elements */
+        .decoration-branch {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle at top left, rgba(255, 183, 197, 0.3), transparent 70%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .decoration-branch-right {
+            position: fixed;
+            bottom: 0;
+            right: 0;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle at bottom right, rgba(255, 183, 197, 0.3), transparent 70%);
+            pointer-events: none;
+            z-index: 0;
         }
     </style>
 </head>
 <body>
-    <!-- Header -->
-    <header class="header">
-        <div class="container">
-            <div class="header-content">
-                <img src="My_Photo.jpg" alt="Hanyang Mao" class="profile-photo">
-                <div class="header-text">
-                    <h1>Hanyang Mao 毛涵阳</h1>
-                    <p class="subtitle">Bioinformatics Undergraduate</p>
-                    <p class="tagline">Zhejiang University & University of Edinburgh Joint Program</p>
-                    <div class="social-links">
-                        <a href="mailto:your.email@example.com" title="Email"><i class="fas fa-envelope"></i></a>
-                        <a href="https://github.com/Harry-Just-ZJU" title="GitHub"><i class="fab fa-github"></i></a>
-                        <a href="https://www.linkedin.com/in/%E6%B6%B5%E9%98%B3-%E6%AF%9B-a2955137a/" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </header>
+    <!-- Sakura Canvas -->
+    <canvas id="sakura-canvas"></canvas>
+
+    <!-- Decorative elements -->
+    <div class="decoration-branch"></div>
+    <div class="decoration-branch-right"></div>
 
     <!-- Navigation -->
-    <nav class="nav">
-        <div class="container">
-            <ul class="nav-links">
-                <li><a href="#about">About</a></li>
-                <li><a href="#research">Research</a></li>
-                <li><a href="#education">Education</a></li>
-                <li><a href="#experience">Experience</a></li>
-                <li><a href="#awards">Awards</a></li>
-                <li><a href="#skills">Skills</a></li>
-            </ul>
-        </div>
+    <nav class="nav-floating">
+        <a href="#about">About</a>
+        <a href="#research">Research</a>
+        <a href="#skills">Skills</a>
     </nav>
 
     <!-- Main Content -->
-    <main>
-        <div class="container">
-            <!-- About Section -->
-            <section id="about">
-                <h2 class="section-title"><i class="fas fa-user"></i>About Me</h2>
-                <div class="about-content">
-                    <p>My name is Hanyang Mao, an undergraduate student in the joint program between Zhejiang University and the University of Edinburgh. I major in bioinformatics and have a deep passion for genomics research.</p>
-                    <p>I have a great enthusiasm for life. I'm a highly social person who enjoys team sports and loves playing video games such as Counter-Strike.</p>
+    <div class="main-content">
+        <!-- Hero Section -->
+        <section class="hero" id="home">
+            <div class="hero-card">
+                <div class="profile-section">
+                    <img src="My_Photo.jpg" alt="Mao Hanyang" class="profile-photo">
                 </div>
-            </section>
-
-            <!-- Research Interests -->
-            <section id="research">
-                <h2 class="section-title"><i class="fas fa-flask"></i>Research Interests</h2>
-                <div class="research-list">
-                    <div class="research-item">
-                        <p><strong>Lymphangioleiomyomatosis (LAM):</strong> Investigating genes or molecular mechanisms capable of compensating for or regulating the loss of TSC1/TSC2 that leads to mTORC1 suppression.</p>
-                    </div>
-                    <div class="research-item">
-                        <p><strong>mTORC1 Regulation:</strong> Exploring additional genes beyond TSC that can selectively downregulate mTORC1 activity, functioning analogously to bi-steric mTORC1 inhibitors.</p>
-                    </div>
-                    <div class="research-item">
-                        <p><strong>Immune Checkpoint Research:</strong> Studying immune checkpoint molecules overexpressed in LAM and related tumors, investigating genes capable of repressing immune checkpoint expression.</p>
-                    </div>
-                    <div class="research-item">
-                        <p><strong>Gene Signature Identification:</strong> Identifying stable, small-scale gene signatures across platforms (microarray and RNA-seq) for LAM classification or subtype stratification.</p>
+                <div class="hero-info">
+                    <h1>毛涵阳 Mao Hanyang</h1>
+                    <p class="motto">"Just."</p>
+                    <p class="subtitle">Biomedical Informatics</p>
+                    <p class="school">Zhejiang University International School · Class of 2024</p>
+                    <div class="social-links">
+                        <a href="mailto:hanyangmao06@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
+                        <a href="https://github.com/Harry-Just-ZJU" title="GitHub" target="_blank"><i class="fab fa-github"></i></a>
+                        <a href="https://www.linkedin.com/in/%E6%B6%B5%E9%98%B3-%E6%AF%9B-a2955137a/" title="LinkedIn" target="_blank"><i class="fab fa-linkedin-in"></i></a>
                     </div>
                 </div>
-            </section>
-
-            <!-- Education -->
-            <section id="education">
-                <h2 class="section-title"><i class="fas fa-graduation-cap"></i>Education</h2>
-                <div class="education-card">
-                    <div class="education-icon">
-                        <i class="fas fa-university"></i>
-                    </div>
-                    <div class="education-details">
-                        <h3>Zhejiang University & University of Edinburgh</h3>
-                        <p>Bachelor's in Bioinformatics (Joint Program)</p>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Research Experience -->
-            <section id="experience">
-                <h2 class="section-title"><i class="fas fa-microscope"></i>Research Experience</h2>
-                <div class="experience-grid">
-                    <div class="experience-category">
-                        <h3><i class="fas fa-dna"></i>Lymphangioleiomyomatosis Research</h3>
-                        <ul class="project-list">
-                            <li>
-                                <i class="fas fa-file-alt"></i>
-                                <a href="#">Subtype Classification of Macrophages in Lymphangioleiomyomatosis</a>
-                            </li>
-                            <li>
-                                <i class="fas fa-file-alt"></i>
-                                <a href="#">Cell Chat between Lymphangioleiomyomatosis Cells</a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="experience-category">
-                        <h3><i class="fas fa-laptop-code"></i>Personal Practices</h3>
-                        <ul class="project-list">
-                            <li>
-                                <i class="fas fa-code"></i>
-                                <strong>COVID-19 Dataset Modeling:</strong> Random Forest Implementation
-                            </li>
-                            <li>
-                                <i class="fas fa-code"></i>
-                                <strong>Breast Cancer Analysis:</strong> Data Processing & DEA
-                            </li>
-                            <li>
-                                <i class="fas fa-code"></i>
-                                <strong>Enrichment Analysis:</strong> Functional Annotation
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Leadership & Extracurriculars -->
-            <section id="leadership">
-                <h2 class="section-title"><i class="fas fa-users"></i>Leadership & Extracurriculars</h2>
-                <div class="about-content">
-                    <p>Served as a Staff Member for the University Practical Guidance Center (2024-2025), with responsibilities including drafting documents, coordinating events, and managing financial reimbursements.</p>
-                </div>
-            </section>
-
-            <!-- Awards -->
-            <section id="awards">
-                <h2 class="section-title"><i class="fas fa-trophy"></i>Awards & Honors</h2>
-                <ul class="awards-list">
-                    <li class="award-item">
-                        <div class="award-icon">
-                            <i class="fas fa-medal"></i>
-                        </div>
-                        <div>
-                            <strong>First Prize - 2025 Winter Break Social Practice</strong>
-                            <p style="color: var(--text-light); margin-top: 4px;">Zhejiang University</p>
-                        </div>
-                    </li>
-                </ul>
-            </section>
-
-            <!-- Skills -->
-            <section id="skills">
-                <h2 class="section-title"><i class="fas fa-cogs"></i>Skills</h2>
-                <div class="skills-grid">
-                    <div class="skill-category">
-                        <h3><i class="fas fa-language"></i>Languages</h3>
-                        <div class="skill-item">
-                            <strong>Mandarin:</strong>
-                            <span>Native Proficiency</span>
-                        </div>
-                        <div class="skill-item">
-                            <strong>English:</strong>
-                            <span>Fluent (CET-4: 637, CET-6: 541)</span>
-                        </div>
-                    </div>
-                    <div class="skill-category">
-                        <h3><i class="fas fa-laptop-code"></i>Technology</h3>
-                        <div class="skill-item">
-                            <strong>R:</strong>
-                            <span>Data analysis, ggplot2, Seurat</span>
-                        </div>
-                        <div class="skill-item">
-                            <strong>Python:</strong>
-                            <span>Automation, scripting</span>
-                        </div>
-                    </div>
-                </div>
-            </section>
-        </div>
-    </main>
-
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <p>© 2025 Hanyang Mao. All rights reserved.</p>
-            <div class="social-links">
-                <a href="mailto:your.email@example.com"><i class="fas fa-envelope"></i></a>
-                <a href="https://github.com/Harry-Just-ZJU"><i class="fab fa-github"></i></a>
-                <a href="https://www.linkedin.com/in/%E6%B6%B5%E9%98%B3-%E6%AF%9B-a2955137a/"><i class="fab fa-linkedin"></i></a>
             </div>
-        </div>
-    </footer>
+        </section>
 
-    <!-- Smooth Scrolling Script -->
+        <!-- About Section -->
+        <section class="section" id="about">
+            <h2 class="section-title">About Me</h2>
+            <div class="card">
+                <h3><i class="fas fa-user-graduate"></i> Education</h3>
+                <div class="timeline-item">
+                    <div class="timeline-date">2024 - Present</div>
+                    <div class="timeline-content">
+                        <strong>Zhejiang University International School</strong><br>
+                        Bachelor of Biomedical Informatics
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <h3><i class="fas fa-microscope"></i> Research Experience</h3>
+                <div class="timeline-item">
+                    <div class="timeline-date">2024.7 - Present</div>
+                    <div class="timeline-content">
+                        <strong>Computational Structural Biology on Protein Motifs</strong><br>
+                        <a href="https://person.zju.edu.cn/samano#Team" target="_blank" style="color: var(--sakura-dark);">Team Page →</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Research Interests Section -->
+        <section class="section" id="research">
+            <h2 class="section-title">Research Interests</h2>
+            <div class="research-grid">
+                <div class="research-card">
+                    <div class="icon"><i class="fas fa-dna"></i></div>
+                    <h4>Computational Structural Biology</h4>
+                    <p>Exploring protein structures and motifs through computational approaches</p>
+                </div>
+                <div class="research-card">
+                    <div class="icon"><i class="fas fa-laptop-code"></i></div>
+                    <h4>Genomics Technology</h4>
+                    <p>Advancing genomics through innovative technologies</p>
+                </div>
+                <div class="research-card">
+                    <div class="icon"><i class="fas fa-code-branch"></i></div>
+                    <h4>Bioinformatic Algorithm</h4>
+                    <p>Developing algorithms for biological data analysis</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section class="section" id="skills">
+            <h2 class="section-title">Skills & Expertise</h2>
+            
+            <div class="card">
+                <h3><i class="fas fa-code"></i> Programming Languages & Tools</h3>
+                <div class="skills-container">
+                    <div class="skill-tag">Python</div>
+                    <div class="skill-tag">R</div>
+                    <div class="skill-tag">Java</div>
+                    <div class="skill-tag">SQL</div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3><i class="fas fa-database"></i> Databases & Resources</h3>
+                <div class="skills-container">
+                    <div class="skill-tag">PubMed</div>
+                    <div class="skill-tag">UniProt</div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3><i class="fas fa-language"></i> Languages</h3>
+                <ul>
+                    <li><strong>Mandarin:</strong> Native Speaker</li>
+                    <li><strong>English:</strong> Proficient (CET-4: 637)</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer>
+            <p>© 2025 Mao Hanyang. All rights reserved.</p>
+            <div class="social-links">
+                <a href="mailto:hanyangmao06@gmail.com"><i class="fas fa-envelope"></i></a>
+                <a href="https://github.com/Harry-Just-ZJU" target="_blank"><i class="fab fa-github"></i></a>
+                <a href="https://www.linkedin.com/in/%E6%B6%B5%E9%98%B3-%E6%AF%9B-a2955137a/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Scroll to top button -->
+    <button class="scroll-top" id="scrollTop">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Sakura Animation Script -->
     <script>
+        // Sakura Petals Animation
+        const canvas = document.getElementById('sakura-canvas');
+        const ctx = canvas.getContext('2d');
+
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+
+        class SakuraPetal {
+            constructor() {
+                this.reset();
+            }
+
+            reset() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * -canvas.height;
+                this.size = Math.random() * 15 + 8;
+                this.speedY = Math.random() * 2 + 1;
+                this.speedX = Math.random() * 2 - 1;
+                this.rotation = Math.random() * 360;
+                this.rotationSpeed = Math.random() * 3 - 1.5;
+                this.opacity = Math.random() * 0.5 + 0.3;
+                this.swingAmplitude = Math.random() * 50 + 20;
+                this.swingSpeed = Math.random() * 0.02 + 0.01;
+                this.swingOffset = Math.random() * Math.PI * 2;
+            }
+
+            update() {
+                this.y += this.speedY;
+                this.x += Math.sin(this.y * this.swingSpeed + this.swingOffset) * 0.5 + this.speedX * 0.3;
+                this.rotation += this.rotationSpeed;
+
+                if (this.y > canvas.height + 50) {
+                    this.reset();
+                }
+                if (this.x > canvas.width + 50) {
+                    this.x = -50;
+                } else if (this.x < -50) {
+                    this.x = canvas.width + 50;
+                }
+            }
+
+            draw() {
+                ctx.save();
+                ctx.translate(this.x, this.y);
+                ctx.rotate((this.rotation * Math.PI) / 180);
+                ctx.globalAlpha = this.opacity;
+
+                // Draw petal shape
+                ctx.beginPath();
+                ctx.fillStyle = `rgba(255, 183, 197, ${this.opacity})`;
+                
+                // Create petal shape using bezier curves
+                ctx.moveTo(0, 0);
+                ctx.bezierCurveTo(
+                    this.size / 2, -this.size / 3,
+                    this.size, -this.size / 3,
+                    this.size, 0
+                );
+                ctx.bezierCurveTo(
+                    this.size, this.size / 3,
+                    this.size / 2, this.size / 2,
+                    0, this.size / 2
+                );
+                ctx.bezierCurveTo(
+                    -this.size / 4, this.size / 3,
+                    -this.size / 4, -this.size / 3,
+                    0, 0
+                );
+                ctx.fill();
+
+                // Add subtle gradient/highlight
+                ctx.beginPath();
+                ctx.fillStyle = `rgba(255, 220, 230, ${this.opacity * 0.5})`;
+                ctx.arc(this.size / 3, 0, this.size / 6, 0, Math.PI * 2);
+                ctx.fill();
+
+                ctx.restore();
+            }
+        }
+
+        // Create petals
+        const petals = [];
+        const petalCount = 50;
+
+        for (let i = 0; i < petalCount; i++) {
+            petals.push(new SakuraPetal());
+            petals[i].y = Math.random() * canvas.height; // Distribute initially
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            petals.forEach(petal => {
+                petal.update();
+                petal.draw();
+            });
+
+            requestAnimationFrame(animate);
+        }
+
+        animate();
+
+        // Scroll to top functionality
+        const scrollTopBtn = document.getElementById('scrollTop');
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                scrollTopBtn.classList.add('visible');
+            } else {
+                scrollTopBtn.classList.remove('visible');
+            }
+        });
+
+        scrollTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Smooth scroll for navigation links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
