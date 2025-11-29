@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mao Hanyang 毛涵阳 | Just.</title>
+    <meta name="description" content="Mao Hanyang - Biomedical Informatics at Zhejiang University International School">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Noto+Serif+SC:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --sakura-pink: #FFB7C5;
+            --sakura-light: #FFF0F3;
+            --sakura-dark: #E91E63;
+            --sakura-petal: #FFCDD2;
+            --text-dark: #2D3436;
+            --text-light: #636E72;
+            --bg-cream: #FFFAF5;
+            --card-bg: rgba(255, 255, 255, 0.85);
+            --shadow: 0 10px 40px rgba(233, 30, 99, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', 'Noto Serif SC', serif;
+            background: linear-gradient(135deg, #FFF5F7 0%, #FFEEF2 50%, #FFF0F5 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+            color: var(--text-dark);
+            line-height: 1.8;
+        }
+
+        /* Sakura Canvas Background */
+        #sakura-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        /* Main Content Container */
+        .main-content {
+            position: relative;
+            z-index: 10;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 20px;
+            position: relative;
+        }
+
+        .hero-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(20px);
+            border-radius: 30px;
+            padding: 60px;
+            max-width: 900px;
+            width: 100%;
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(255, 183, 197, 0.3);
+            display: flex;
+            align-items: center;
+            gap: 50px;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .profile-section {
+            text-align: center;
+            flex-shrink: 0;
+        }
+
+        .profile-photo {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid var(--sakura-pink);
+            box-shadow: 0 15px 35px rgba(233, 30, 99, 0.2);
+            transition: transform 0.4s ease;
+        }
+
+        .profile-photo:hover {
+            transform: scale(1.05) rotate(3deg);
+        }
+
+        .hero-info h1 {
+            font-family: 'Playfair Display', 'Noto Serif SC', serif;
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 8px;
+            background: linear-gradient(135deg, var(--sakura-dark), #FF6B9D);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-info .motto {
+            font-size: 1.5rem;
+            color: var(--sakura-dark);
+            font-style: italic;
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+
+        .hero-info .subtitle {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            margin-bottom: 8px;
+        }
+
+        .hero-info .school {
+            font-size: 1rem;
+            color: var(--text-light);
+            margin-bottom: 25px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 25px;
+        }
+
+        .social-links a {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--sakura-pink), var(--sakura-petal));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.3rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(233, 30, 99, 0.2);
+        }
+
+        .social-links a:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(233, 30, 99, 0.3);
+            background: linear-gradient(135deg, var(--sakura-dark), #FF6B9D);
+        }
+
+        /* Navigation */
+        .nav-floating {
+            position: fixed;
+            top: 30px;
+            right: 30px;
+            z-index: 1000;
+            display: flex;
+            gap: 10px;
+        }
+
+        .nav-floating a {
+            padding: 12px 20px;
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            border-radius: 25px;
+            color: var(--text-dark);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 183, 197, 0.3);
+        }
+
+        .nav-floating a:hover {
+            background: var(--sakura-pink);
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        /* Sections */
+        .section {
+            padding: 80px 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', 'Noto Serif SC', serif;
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 50px;
+            color: var(--text-dark);
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '🌸';
+            display: block;
+            margin-top: 15px;
+            font-size: 2rem;
+        }
+
+        /* Cards */
+        .card {
+            background: var(--card-bg);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            padding: 35px;
+            margin-bottom: 25px;
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(255, 183, 197, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 50px rgba(233, 30, 99, 0.15);
+        }
+
+        .card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            color: var(--sakura-dark);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .card h3 i {
+            font-size: 1.2rem;
+        }
+
+        .card p, .card li {
+            color: var(--text-light);
+            font-size: 1rem;
+            line-height: 1.8;
+        }
+
+        .card ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .card li {
+            padding: 8px 0;
+            padding-left: 25px;
+            position: relative;
+        }
+
+        .card li::before {
+            content: '✿';
+            position: absolute;
+            left: 0;
+            color: var(--sakura-pink);
+        }
+
+        /* Research Interests Grid */
+        .research-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .research-card {
+            background: linear-gradient(135deg, var(--card-bg), rgba(255, 240, 243, 0.9));
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 183, 197, 0.3);
+        }
+
+        .research-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(233, 30, 99, 0.15);
+        }
+
+        .research-card .icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, var(--sakura-pink), var(--sakura-dark));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 1.8rem;
+            color: white;
+        }
+
+        .research-card h4 {
+            font-size: 1.1rem;
+            color: var(--text-dark);
+            margin-bottom: 10px;
+        }
+
+        .research-card p {
+            font-size: 0.95rem;
+            color: var(--text-light);
+        }
+
+        /* Skills Section */
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .skill-tag {
+            background: linear-gradient(135deg, var(--sakura-light), white);
+            padding: 15px 25px;
+            border-radius: 50px;
+            text-align: center;
+            font-weight: 500;
+            color: var(--sakura-dark);
+            border: 2px solid var(--sakura-pink);
+            transition: all 0.3s ease;
+        }
+
+        .skill-tag:hover {
+            background: var(--sakura-pink);
+            color: white;
+            transform: scale(1.05);
+        }
+
+        /* Timeline */
+        .timeline-item {
+            display: flex;
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+
+        .timeline-date {
+            flex-shrink: 0;
+            width: 120px;
+            text-align: right;
+            color: var(--sakura-dark);
+            font-weight: 600;
+        }
+
+        .timeline-content {
+            flex: 1;
+            padding-left: 25px;
+            border-left: 3px solid var(--sakura-pink);
+            position: relative;
+        }
+
+        .timeline-content::before {
+            content: '🌸';
+            position: absolute;
+            left: -12px;
+            top: 0;
+            font-size: 1.2rem;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 50px 20px;
+            background: linear-gradient(135deg, rgba(255, 183, 197, 0.2), rgba(255, 205, 210, 0.2));
+            margin-top: 50px;
+        }
+
+        footer p {
+            color: var(--text-light);
+            margin-bottom: 20px;
+        }
+
+        footer .social-links {
+            justify-content: center;
+        }
+
+        /* Scroll to top button */
+        .scroll-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--sakura-pink), var(--sakura-dark));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 1000;
+            border: none;
+            box-shadow: 0 5px 20px rgba(233, 30, 99, 0.3);
+        }
+
+        .scroll-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .scroll-top:hover {
+            transform: translateY(-5px);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero-card {
+                flex-direction: column;
+                padding: 40px 25px;
+                text-align: center;
+            }
+
+            .hero-info h1 {
+                font-size: 2.2rem;
+            }
+
+            .social-links {
+                justify-content: center;
+            }
+
+            .nav-floating {
+                top: 15px;
+                right: 15px;
+                flex-wrap: wrap;
+                justify-content: flex-end;
+                max-width: 200px;
+            }
+
+            .nav-floating a {
+                padding: 8px 15px;
+                font-size: 0.8rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .timeline-item {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .timeline-date {
+                text-align: left;
+                width: auto;
+            }
+
+            .profile-photo {
+                width: 160px;
+                height: 160px;
+            }
+        }
+
+        /* Decorative elements */
+        .decoration-branch {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle at top left, rgba(255, 183, 197, 0.3), transparent 70%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .decoration-branch-right {
+            position: fixed;
+            bottom: 0;
+            right: 0;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle at bottom right, rgba(255, 183, 197, 0.3), transparent 70%);
+            pointer-events: none;
+            z-index: 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- Sakura Canvas -->
+    <canvas id="sakura-canvas"></canvas>
+
+    <!-- Decorative elements -->
+    <div class="decoration-branch"></div>
+    <div class="decoration-branch-right"></div>
+
+    <!-- Navigation -->
+    <nav class="nav-floating">
+        <a href="#about">About</a>
+        <a href="#research">Research</a>
+        <a href="#skills">Skills</a>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Hero Section -->
+        <section class="hero" id="home">
+            <div class="hero-card">
+                <div class="profile-section">
+                    <img src="My_Photo.jpg" alt="Mao Hanyang" class="profile-photo">
+                </div>
+                <div class="hero-info">
+                    <h1>毛涵阳 Mao Hanyang</h1>
+                    <p class="motto">"Just."</p>
+                    <p class="subtitle">Biomedical Informatics</p>
+                    <p class="school">Zhejiang University International School · Class of 2024</p>
+                    <div class="social-links">
+                        <a href="mailto:hanyangmao06@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
+                        <a href="https://github.com/Harry-Just-ZJU" title="GitHub" target="_blank"><i class="fab fa-github"></i></a>
+                        <a href="https://www.linkedin.com/in/%E6%B6%B5%E9%98%B3-%E6%AF%9B-a2955137a/" title="LinkedIn" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section class="section" id="about">
+            <h2 class="section-title">About Me</h2>
+            <div class="card">
+                <h3><i class="fas fa-user-graduate"></i> Education</h3>
+                <div class="timeline-item">
+                    <div class="timeline-date">2024 - Present</div>
+                    <div class="timeline-content">
+                        <strong>Zhejiang University International School</strong><br>
+                        Bachelor of Biomedical Informatics
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <h3><i class="fas fa-microscope"></i> Research Experience</h3>
+                <div class="timeline-item">
+                    <div class="timeline-date">2024.7 - Present</div>
+                    <div class="timeline-content">
+                        <strong>Computational Structural Biology on Protein Motifs</strong><br>
+                        <a href="https://person.zju.edu.cn/samano#Team" target="_blank" style="color: var(--sakura-dark);">Team Page →</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Research Interests Section -->
+        <section class="section" id="research">
+            <h2 class="section-title">Research Interests</h2>
+            <div class="research-grid">
+                <div class="research-card">
+                    <div class="icon"><i class="fas fa-dna"></i></div>
+                    <h4>Computational Structural Biology</h4>
+                    <p>Exploring protein structures and motifs through computational approaches</p>
+                </div>
+                <div class="research-card">
+                    <div class="icon"><i class="fas fa-laptop-code"></i></div>
+                    <h4>Genomics Technology</h4>
+                    <p>Advancing genomics through innovative technologies</p>
+                </div>
+                <div class="research-card">
+                    <div class="icon"><i class="fas fa-code-branch"></i></div>
+                    <h4>Bioinformatic Algorithm</h4>
+                    <p>Developing algorithms for biological data analysis</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section class="section" id="skills">
+            <h2 class="section-title">Skills & Expertise</h2>
+            
+            <div class="card">
+                <h3><i class="fas fa-code"></i> Programming Languages & Tools</h3>
+                <div class="skills-container">
+                    <div class="skill-tag">Python</div>
+                    <div class="skill-tag">R</div>
+                    <div class="skill-tag">Java</div>
+                    <div class="skill-tag">SQL</div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3><i class="fas fa-database"></i> Databases & Resources</h3>
+                <div class="skills-container">
+                    <div class="skill-tag">PubMed</div>
+                    <div class="skill-tag">UniProt</div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3><i class="fas fa-language"></i> Languages</h3>
+                <ul>
+                    <li><strong>Mandarin:</strong> Native Speaker</li>
+                    <li><strong>English:</strong> Proficient (CET-4: 637)</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer>
+            <p>© 2025 Mao Hanyang. All rights reserved.</p>
+            <div class="social-links">
+                <a href="mailto:hanyangmao06@gmail.com"><i class="fas fa-envelope"></i></a>
+                <a href="https://github.com/Harry-Just-ZJU" target="_blank"><i class="fab fa-github"></i></a>
+                <a href="https://www.linkedin.com/in/%E6%B6%B5%E9%98%B3-%E6%AF%9B-a2955137a/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Scroll to top button -->
+    <button class="scroll-top" id="scrollTop">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Sakura Animation Script -->
+    <script>
+        // Sakura Petals Animation
+        const canvas = document.getElementById('sakura-canvas');
+        const ctx = canvas.getContext('2d');
+
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+
+        class SakuraPetal {
+            constructor() {
+                this.reset();
+            }
+
+            reset() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * -canvas.height;
+                this.size = Math.random() * 15 + 8;
+                this.speedY = Math.random() * 2 + 1;
+                this.speedX = Math.random() * 2 - 1;
+                this.rotation = Math.random() * 360;
+                this.rotationSpeed = Math.random() * 3 - 1.5;
+                this.opacity = Math.random() * 0.5 + 0.3;
+                this.swingAmplitude = Math.random() * 50 + 20;
+                this.swingSpeed = Math.random() * 0.02 + 0.01;
+                this.swingOffset = Math.random() * Math.PI * 2;
+            }
+
+            update() {
+                this.y += this.speedY;
+                this.x += Math.sin(this.y * this.swingSpeed + this.swingOffset) * 0.5 + this.speedX * 0.3;
+                this.rotation += this.rotationSpeed;
+
+                if (this.y > canvas.height + 50) {
+                    this.reset();
+                }
+                if (this.x > canvas.width + 50) {
+                    this.x = -50;
+                } else if (this.x < -50) {
+                    this.x = canvas.width + 50;
+                }
+            }
+
+            draw() {
+                ctx.save();
+                ctx.translate(this.x, this.y);
+                ctx.rotate((this.rotation * Math.PI) / 180);
+                ctx.globalAlpha = this.opacity;
+
+                // Draw petal shape
+                ctx.beginPath();
+                ctx.fillStyle = `rgba(255, 183, 197, ${this.opacity})`;
+                
+                // Create petal shape using bezier curves
+                ctx.moveTo(0, 0);
+                ctx.bezierCurveTo(
+                    this.size / 2, -this.size / 3,
+                    this.size, -this.size / 3,
+                    this.size, 0
+                );
+                ctx.bezierCurveTo(
+                    this.size, this.size / 3,
+                    this.size / 2, this.size / 2,
+                    0, this.size / 2
+                );
+                ctx.bezierCurveTo(
+                    -this.size / 4, this.size / 3,
+                    -this.size / 4, -this.size / 3,
+                    0, 0
+                );
+                ctx.fill();
+
+                // Add subtle gradient/highlight
+                ctx.beginPath();
+                ctx.fillStyle = `rgba(255, 220, 230, ${this.opacity * 0.5})`;
+                ctx.arc(this.size / 3, 0, this.size / 6, 0, Math.PI * 2);
+                ctx.fill();
+
+                ctx.restore();
+            }
+        }
+
+        // Create petals
+        const petals = [];
+        const petalCount = 50;
+
+        for (let i = 0; i < petalCount; i++) {
+            petals.push(new SakuraPetal());
+            petals[i].y = Math.random() * canvas.height; // Distribute initially
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            petals.forEach(petal => {
+                petal.update();
+                petal.draw();
+            });
+
+            requestAnimationFrame(animate);
+        }
+
+        animate();
+
+        // Scroll to top functionality
+        const scrollTopBtn = document.getElementById('scrollTop');
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                scrollTopBtn.classList.add('visible');
+            } else {
+                scrollTopBtn.classList.remove('visible');
+            }
+        });
+
+        scrollTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
